@@ -5,10 +5,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ruta de Reparto - Buenos Aires</title>
+    <meta name="description" content="Aplicación para calcular rutas de reparto optimizadas en Buenos Aires" />
+    <meta name="author" content="Tu Nombre" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <meta property="og:title" content="Ruta de Reparto - Buenos Aires" />
+    <meta property="og:description" content="Calculá rutas de reparto optimizadas en Buenos Aires" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tu-sitio.com" />
+    <meta property="og:image" content="https://tu-sitio.com/imagen-previa.png" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/@mapbox/polyline"></script>
 </head>
+
 
 <body>
     <h1>Mapa de Reparto - Buenos Aires</h1>
@@ -25,12 +37,14 @@
             Ruta</button>
     </div>
 
-    
+
     <h2>Listado de direcciones</h2>
     <div id="lista-direcciones"></div>
-    
+
+    <div id="resumenRuta" style="margin-top: 10px; font-weight: bold;"></div>
+
     <div id="map"></div>
-    
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
     <script src="main.js"></script>

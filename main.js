@@ -15,7 +15,20 @@ function agregarDireccion(textoOriginal, lat, lng, labelMostrado = null) {
 
     const marcador = L.marker([lat, lng]).addTo(map).bindPopup(texto);
 
-    direcciones.push({ id, texto, lat, lng, marcador });
+    // Si no hay direcciones, agregamos como inicio
+    if (direcciones.length === 0) {
+        direcciones.push({ id, texto, lat, lng, marcador }); // inicio
+    } else {
+        // Si hay al menos 1 dirección, insertamos antes del destino para no reemplazar destino
+        if (direcciones.length === 1) {
+            // Solo inicio está, agregamos destino
+            direcciones.push({ id, texto, lat, lng, marcador });
+        } else {
+            // Hay inicio y destino, insertamos antes del último (destino)
+            direcciones.splice(direcciones.length - 1, 0, { id, texto, lat, lng, marcador });
+        }
+    }
+
     actualizarListado();
     map.setView([lat, lng], 13);
 }
@@ -29,6 +42,10 @@ function actualizarListado() {
         const div = document.createElement("div");
         div.className = "item-direccion";
         div.dataset.id = dir.id;
+
+        if (index === 0 || index === direcciones.length - 1) {
+            div.classList.add("no-drag"); // evita mover inicio y destino con drag
+        }
 
         let etiqueta = "";
 
@@ -46,7 +63,7 @@ function actualizarListado() {
             <button class="btn-eliminar" title="Eliminar">Eliminar</button>
             <span class="handle" title="Arrastrar para mover">⇅</span>
         `;
-        
+
         // Cambiar dirección
         div.querySelector("input").addEventListener("change", async (e) => {
             await modificarDireccion(dir.id, e.target.value);
@@ -175,12 +192,29 @@ document.getElementById("archivoJson").addEventListener("change", function (e) {
     lector.readAsText(archivo);
 });
 
-// SortableJS para drag & drop listado
+// SortableJS para bloquear mover primer y último item (inicio y destino)
 new Sortable(document.getElementById('lista-direcciones'), {
     animation: 150,
     handle: '.handle',
+    filter: '.no-drag', // clase para bloquear drag
+    onMove: function (evt) {
+        // Bloquear mover primer o último elemento
+        if (evt.related.classList.contains('no-drag')) return false;
+        if (evt.dragged.classList.contains('no-drag')) return false;
+        return true;
+    },
     onEnd: function (evt) {
-        // Cambiar orden en array direcciones
+        // Cambiar orden en array direcciones pero solo de los que pueden moverse
+        // Evitamos mover inicio y destino, que tienen clase no-drag
+        if (
+            evt.oldIndex === 0 || evt.oldIndex === direcciones.length - 1 ||
+            evt.newIndex === 0 || evt.newIndex === direcciones.length - 1
+        ) {
+            // No permitimos mover inicio ni destino
+            actualizarListado();
+            return;
+        }
+
         const item = direcciones.splice(evt.oldIndex, 1)[0];
         direcciones.splice(evt.newIndex, 0, item);
     }
@@ -212,6 +246,7 @@ async function calcularRuta() {
     const payload = { jobs, vehicles, options: { geometry: true } };
 
     try {
+        // Primero: optimizar orden con /optimization
         const res = await fetch("https://api.openrouteservice.org/optimization", {
             method: "POST",
             headers: {
@@ -247,6 +282,7 @@ async function calcularRuta() {
         // Obtener coords en nuevo orden para dibujar ruta
         const coords = direcciones.map(d => [d.lng, d.lat]);
 
+        // Obtener ruta detallada con /v2/directions/driving-car
         const dirRes = await fetch("https://api.openrouteservice.org/v2/directions/driving-car/geojson", {
             method: "POST",
             headers: {
@@ -255,14 +291,30 @@ async function calcularRuta() {
             },
             body: JSON.stringify({ coordinates: coords })
         });
+
         const dirData = await dirRes.json();
 
+        if (!dirData?.features?.length) {
+            alert("No se pudo obtener la ruta.");
+            return;
+        }
+
+        // Dibujar la ruta
         if (window.rutaLayer) map.removeLayer(window.rutaLayer);
         window.rutaLayer = L.geoJSON(dirData).addTo(map);
+
         map.fitBounds(window.rutaLayer.getBounds());
+
+        // Mostrar distancia y duración
+        const distanciaKm = (dirData.features[0].properties.summary.distance / 1000).toFixed(2);
+        const duracionMin = (dirData.features[0].properties.summary.duration / 60).toFixed(1);
+
+        document.getElementById("resumenRuta").innerText =
+            `🛣️ Distancia total: ${distanciaKm} km | ⏱️ Tiempo estimado: ${duracionMin} minutos`;
 
     } catch (e) {
         console.error(e);
         alert("Error calculando ruta optimizada.");
     }
 }
+

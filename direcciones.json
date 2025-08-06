@@ -1,17 +1,58 @@
 [
-  { "id": 1, "texto": "Juan Domingo Perón 3100, Valentín Alsina" },
-  { "id": 2, "texto": "Coronel Sayos 2200, Piñeyro" },
-  { "id": 3, "texto": "Heredia 1500, Gerli" },
-  { "id": 4, "texto": "Paso de la Patria 400, Valentín Alsina" },
-  { "id": 5, "texto": "Av. Galicia 700, Piñeyro" },
-  { "id": 6, "texto": "Cnel. Seguí 1300, Gerli" },
-  { "id": 7, "texto": "Av. Remedios de Escalada de San Martín 2400, Valentín Alsina" },
-  { "id": 8, "texto": "Brandsen 1800, Piñeyro" },
-  { "id": 9, "texto": "Oncativo 1200, Gerli" },
-  { "id": 10, "texto": "Tuyutí 3000, Valentín Alsina" },
-  { "id": 11, "texto": "Av. Rivadavia 1600, Piñeyro" },
-  { "id": 12, "texto": "De la Serna 1400, Gerli" },
-  { "id": 13, "texto": "Margarita Weild 2900, Valentín Alsina" },
-  { "id": 14, "texto": "Carlos Pellegrini 900, Piñeyro" },
-  { "id": 15, "texto": "Caxaraville 1700, Gerli" }
+    {
+        "1": 1,
+        "texto": "12 de octubre 615, avellaneda"
+    },
+    {
+        "1": 2,
+        "texto": "blandengues 3200, sarandi"
+    },
+    {
+        "1": 3,
+        "texto": "chile 1717, piñeyro"
+    },
+    {
+        "1": 4,
+        "texto": "genova 2718, sarandi"
+    },
+    {
+        "1": 5,
+        "texto": "humaita 1831, piñeyro"
+    },
+    {
+        "1": 6,
+        "texto": "madariaga 486, sarandi"
+    },
+    {
+        "1": 7,
+        "texto": "obarrio 1108, sarandi"
+    },
+    {
+        "1": 8,
+        "texto": "obarrio 1180, sarandi"
+    },
+    {
+        "1": 9,
+        "texto": "general o'higgins 1596, avellaneda"
+    },
+    {
+        "1": 10,
+        "texto": "olavarria 21, avellaneda"
+    },
+    {
+        "1": 11,
+        "texto": "piñeiro 154, lanus"
+    },
+    {
+        "1": 12,
+        "texto": "san pedro 499, sarandi"
+    },
+    {
+        "1": 13,
+        "texto": "soreda 4090, sarandi"
+    },
+    {
+        "1": 14,
+        "texto": "suipacha 1031, sarandi"
+    }
 ]
