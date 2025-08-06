@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ruta de Reparto - Buenos Aires</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Mapa de Reparto - Buenos Aires</h1>
+
+    <div class="formulario">
+        <label for="direccion">Dirección o coordenadas:</label>
+        <input type="text" id="direccion" placeholder="Ej: Av. Rivadavia 1000 o -34.60,-58.38" />
+        <button onclick="agregarPunto()" title="Agregar punto al mapa">Agregar punto</button>
+
+        <label for="archivoJson" style="display:block; margin-top:10px;">Cargar archivo JSON:</label>
+        <input type="file" id="archivoJson" accept=".json" title="Seleccioná un archivo JSON con coordenadas" />
+
+        <button onclick="calcularRuta()" title="Calcular ruta entre los puntos" style="margin-top:10px;">Calcular
+            Ruta</button>
+    </div>
+
+    
+    <h2>Listado de direcciones</h2>
+    <div id="lista-direcciones"></div>
+    
+    <div id="map"></div>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

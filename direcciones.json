@@ -1,0 +1,17 @@
+[
+  { "id": 1, "texto": "Juan Domingo Perón 3100, Valentín Alsina" },
+  { "id": 2, "texto": "Coronel Sayos 2200, Piñeyro" },
+  { "id": 3, "texto": "Heredia 1500, Gerli" },
+  { "id": 4, "texto": "Paso de la Patria 400, Valentín Alsina" },
+  { "id": 5, "texto": "Av. Galicia 700, Piñeyro" },
+  { "id": 6, "texto": "Cnel. Seguí 1300, Gerli" },
+  { "id": 7, "texto": "Av. Remedios de Escalada de San Martín 2400, Valentín Alsina" },
+  { "id": 8, "texto": "Brandsen 1800, Piñeyro" },
+  { "id": 9, "texto": "Oncativo 1200, Gerli" },
+  { "id": 10, "texto": "Tuyutí 3000, Valentín Alsina" },
+  { "id": 11, "texto": "Av. Rivadavia 1600, Piñeyro" },
+  { "id": 12, "texto": "De la Serna 1400, Gerli" },
+  { "id": 13, "texto": "Margarita Weild 2900, Valentín Alsina" },
+  { "id": 14, "texto": "Carlos Pellegrini 900, Piñeyro" },
+  { "id": 15, "texto": "Caxaraville 1700, Gerli" }
+]
