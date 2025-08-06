@@ -310,7 +310,8 @@ async function calcularRuta() {
         const duracionMin = (dirData.features[0].properties.summary.duration / 60).toFixed(1);
 
         document.getElementById("resumenRuta").innerText =
-            `🛣️ Distancia total: ${distanciaKm} km | ⏱️ Tiempo estimado: ${duracionMin} minutos`;
+            `🛣️ Distancia total: ${distanciaKm} km 
+             ⏱️ Tiempo estimado: ${duracionMin} minutos`;
 
     } catch (e) {
         console.error(e);

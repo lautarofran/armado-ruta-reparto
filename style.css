@@ -1,52 +1,115 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 10px;
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#map {
-    height: 400px;
-    margin-top: 15px;
-    border: 1px solid #ccc;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
 }
 
 .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     max-width: 600px;
+    margin: 0 auto 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.formulario label {
+    font-weight: bold;
+}
+
+.formulario input[type="text"],
+.formulario input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.formulario button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.formulario button:hover {
+    background-color: #2980b9;
+}
+
+/* Mapa */
+#map {
+    height: 500px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Listado */
+h2 {
+    text-align: center;
+    margin: 30px 0 10px;
 }
 
 #lista-direcciones {
-    margin-top: 15px;
     max-width: 600px;
-    border: 1px solid #aaa;
-    padding: 10px;
-    background: #f9f9f9;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
+/* Cada item */
 .item-direccion {
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
-    padding: 6px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: grab;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    background: #fdfdfd;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 .item-direccion input[type="text"] {
     flex: 1;
-    margin-right: 8px;
-    padding: 4px 6px;
-    font-size: 14px;
+    padding: 6px 8px;
+    font-size: 15px;
 }
 
 .btn-eliminar {
     background: #e74c3c;
     border: none;
     color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 6px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    margin-right: 8px;
 }
 
 .btn-eliminar:hover {
@@ -56,10 +119,45 @@ body {
 .handle {
     font-size: 18px;
     cursor: grab;
-    padding: 0 6px;
-    color: #666;
+    color: #888;
 }
+
 .numero {
     font-weight: bold;
     margin-right: 8px;
+}
+
+/* Resumen ruta */
+#resumenRuta {
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .formulario, #lista-direcciones {
+        padding: 15px;
+        width: 90%;
+    }
+
+    #map {
+        height: 400px;
+        width: 95%;
+    }
+
+    .item-direccion {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-direccion input[type="text"] {
+        width: 100%;
+    }
+
+    .btn-eliminar {
+        width: 100%;
+        margin-top: 5px;
+    }
 }
